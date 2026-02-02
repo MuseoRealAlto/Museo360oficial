@@ -1,32 +1,21 @@
 import React from "react";
+import PanoramaViewer from "./PanoramaViewer";
 import "./Museum360.css";
 import logo360 from "../../assets/360.png";
 
-const Museum360 = () => {
+export default function Museum360() {
   return (
-    <div className="museum360-container">
-      <div className="museum360-header">
-        <h1 className="museum360-title">Museo Real Alto</h1>
-        <img src={logo360} alt="Logo 360" className="logo-360" />
-      </div>
-      <div className="museum360-frame">
-        <iframe
-          style={{
-            width: "100%",
-            height: "640px",
-            border: "none",
-            maxWidth: "100%",
-          }}
-          allow="xr-spatial-tracking; vr; gyroscope; accelerometer; fullscreen; autoplay; xr"
-          scrolling="no"
-          allowFullScreen={true}
-          frameBorder="0"
-          src="https://webobook.com/public/68b77938f06a3057f473d732,en?ap=true&si=false&sm=false&sp=false&sfr=true&sl=true&sop=false&"
-          allowVR="yes"
-        ></iframe>
-      </div>
-    </div>
-  );
-};
+    <section className="museum360-page">
 
-export default Museum360;
+      <header className="museum360-header">
+        <h1>Museo Real Alto</h1>
+        
+      </header>
+
+      <div className="museum360-card">
+        <PanoramaViewer />
+      </div>
+
+    </section>
+  );
+}

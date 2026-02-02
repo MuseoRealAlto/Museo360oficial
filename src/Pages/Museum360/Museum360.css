@@ -1,127 +1,33 @@
-.museum360-container {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+.museum360-page {
+  padding: 3rem 1.5rem;
 }
 
 .museum360-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 30px;
-}
-
-.museum360-title {
-  font-size: 2.5rem;
-  margin-right: 15px;
-  color: #333;
-  font-weight: 600;
-}
-
-.logo-360 {
-  height: 40px;
-  width: auto;
-}
-
-.museum360-frame {
-  width: 100%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-/* Estilos responsivos para dispositivos móviles */
-@media (max-width: 768px) {
-  .museum360-header {
-    flex-direction: column;
-    text-align: center;
-  }
-  
-  .museum360-title {
-    margin-right: 0;
-    margin-bottom: 10px;
-    font-size: 2rem;
-  }
-}
-
-@import url('../../variables.css');
-
-/* Lienzo */
-.blog-coming {
-  margin-top: 64px;
-  background: var(--color-quaternary);
-  color: var(--color-primary);
-  min-height: 100vh;
-}
-
-/* Hero */
-.blog-hero {
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  padding: 28px 0 34px;
   text-align: center;
-  color: #fff;
-  background:
-    radial-gradient(900px 420px at 12% 10%, rgba(255,255,255,.08), transparent 60%),
-    radial-gradient(700px 320px at 88% 18%, rgba(255,255,255,.07), transparent 60%),
-    linear-gradient(135deg, var(--color-primary) 0%, var(--color-tertiary) 100%);
+  margin-bottom: 2rem;
 }
 
-.hero-inner { max-width: 960px; margin: 0 auto; padding: 0 1.25rem; }
-.chip {
-  display: inline-block; margin-bottom: .5rem; padding: .28rem .6rem; border-radius: 999px;
-  background: rgba(255,255,255,.15); backdrop-filter: blur(2px); font-weight: 700; font-size: .8rem; color: #fff;
-}
-.blog-hero h1 {
-  margin: 0 0 .25rem; font-weight: 800;
-  font-size: clamp(1.6rem, 2.2vw, 2rem); line-height: 1.15;
-}
-.blog-hero p {
-  margin: .4rem auto 0; max-width: 760px; line-height: 1.6;
-  font-size: .95rem; color: #eef3ff; opacity: .95;
-}
-.hero-cta { margin-top: .8rem; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.museum360-card {
+  max-width: 1100px;
+  margin: 0 auto;
 
-.btn {
-  display: inline-block; text-decoration: none; border-radius: 8px;
-  padding: .55rem .8rem; font-weight: 600; font-size: .95rem;
-  transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
-}
-.btn.solid { background: #fff; color: var(--color-primary); border: 1px solid #e9ecef; box-shadow: var(--shadow-light); }
-.btn.solid:hover { transform: translateY(-1px); opacity: .98; }
-.btn.outline { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.7); }
-.btn.outline:hover { transform: translateY(-1px); box-shadow: var(--shadow-light); }
+  border-radius: 1rem;
+  overflow: hidden;
 
-/* Placeholders */
-.blog-placeholders { padding: 22px 0 42px; }
-.container { max-width: 1100px; margin: 0 auto; padding: 0 1.25rem; }
-.grid { display: grid; gap: 12px; grid-template-columns: 1fr; }
-@media (min-width: 900px) { .grid { grid-template-columns: repeat(3, 1fr); } }
-
-.card {
-  background: #fff; border: 1px solid var(--color-secondary);
-  border-radius: 12px; padding: 12px; box-shadow: var(--shadow-light);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.15);
+  background: #000; /* Pannellum ama fondos oscuros */
 }
 
-/* Skeleton shimmer */
-.skeleton .sk-img   { height: 140px; border-radius: 8px; }
-.skeleton .sk-title { height: 14px; margin: 10px 0 8px; width: 70%; border-radius: 6px; }
-.skeleton .sk-text  { height: 10px; width: 100%; border-radius: 6px; }
-.skeleton .sk-img, .skeleton .sk-title, .skeleton .sk-text {
-  background: linear-gradient(90deg, #f1f3f5, #eceff3, #f1f3f5);
-  background-size: 200% 100%;
-  animation: shimmer 1.2s infinite linear;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-@keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+
+.pano-embed {
+  width: 100%;
+  height: 520px;        /* 👈 tamaño tipo Webobook */
+  background: #000;
 }
 
-.hide-sm { display: none; }
-@media (min-width: 900px) { .hide-sm { display: block; } }
-
-.note {
-  margin-top: .6rem; font-size: .9rem; color: var(--color-secondary); font-style: italic; text-align: center;
+/* Responsive */
+@media (max-width: 768px) {
+  .pano-embed {
+    height: 360px;
+  }
 }
