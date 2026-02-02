@@ -1,0 +1,267 @@
+/* =========================
+   INFO SECTION
+   ========================= */
+
+.info-section {
+  background: #f9fafb;
+  padding: 5rem 0;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
+}
+
+/* =========================
+   CARD
+   ========================= */
+
+.info-card {
+  background: #ffffff;
+  border-radius: 1.2rem;
+  padding: 3rem 2.5rem;
+  text-align: center;
+  position: relative;
+
+  box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* textura sutil */
+.info-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 1.2rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(249,115,22,0.06),
+    transparent 40%
+  );
+  pointer-events: none;
+}
+
+.info-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.14);
+}
+
+/* =========================
+   BADGE
+   ========================= */
+
+.info-badge {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.25rem 0.9rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #f97316;
+  background: rgba(249,115,22,0.12);
+  border-radius: 999px;
+}
+
+/* =========================
+   HEADER
+   ========================= */
+
+.info-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 1.4rem;
+}
+
+/* ICONO */
+.info-icon {
+  font-size: 2rem;
+  background: rgba(249,115,22,0.14);
+  color: #f97316;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-icon-img img {
+  width: 30px;
+}
+
+/* =========================
+   TEXTOS
+   ========================= */
+
+.info-card h3 {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.info-description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #374151;
+}
+
+.info-divider {
+  width: 60px;
+  height: 3px;
+  background: #f97316;
+  margin: 1.5rem auto;
+  border-radius: 2px;
+  opacity: 0.65;
+}
+
+.info-hint {
+  font-size: 0.95rem;
+  color: #6b7280;
+}
+
+/* =========================
+   BOTÓN CARD
+   ========================= */
+
+.info-button {
+  margin-top: 1.6rem;
+  background: transparent;
+  border: 1px solid #f97316;
+  color: #f97316;
+  padding: 0.65rem 1.6rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  outline: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.info-button:hover {
+  background: #f97316;
+  color: #ffffff;
+}
+
+.info-button:active {
+  box-shadow: none;
+}
+
+.info-button:focus-visible {
+  outline: 2px solid rgba(249,115,22,0.45);
+  outline-offset: 3px;
+}
+
+
+/* =========================
+   LÍNEA INFERIOR
+   ========================= */
+
+.info-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 0%;
+  background: #f97316;
+  transition: width 0.3s ease;
+}
+
+.info-card:hover .info-line {
+  width: 100%;
+}
+
+/* =========================
+   MODAL
+   ========================= */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: #ffffff;
+  max-width: 620px;
+  width: 88%;
+  max-height: 85vh;
+  padding: 2.8rem;
+  border-radius: 1.2rem;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.25);
+  animation: fadeUp 0.3s ease;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-content h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #1f2937;
+}
+
+.modal-text {
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.modal-text p {
+  margin-bottom: 1.2rem;
+  line-height: 1.8;
+  color: #374151;
+  text-align: justify;
+}
+
+/* =========================
+   BOTÓN MODAL
+   ========================= */
+
+.modal-content button {
+  margin: 2rem auto 0;
+  background: #f97316;
+  border: none;
+  color: #fff;
+  padding: 0.65rem 1.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  width: fit-content;
+  font-weight: 600;
+
+  outline: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.modal-content button:active {
+  box-shadow: none;
+}
+
+.modal-content button:focus-visible {
+  outline: 2px solid rgba(249,115,22,0.45);
+  outline-offset: 3px;
+}
+
+/* =========================
+   ANIMACIÓN
+   ========================= */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

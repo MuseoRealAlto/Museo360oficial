@@ -1,0 +1,103 @@
+/* =========================
+   QUOTE SECTION
+========================= */
+.quote-section {
+    padding: 3.5rem 0;
+  position: relative;
+  min-height: 90vh;
+  background-image: url("../../assets/museo1.jpg");
+  background-size: cover;
+  background-position: center 30%; /* ⬅️ sube un poco la imagen */
+  background-attachment: fixed;   /* ⬅️ efecto scroll */
+  display: flex;
+  align-items: center;
+}
+
+/* Filtro oscuro sobre la imagen */
+.quote-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+/* Contenedor general */
+.quote-overlay {
+  display: flex;
+  justify-content: flex-end; /* ⬅️ a la derecha */
+  align-items: center;
+  padding: 0 6%;
+}
+
+/* =========================
+   CAJA DE TEXTO
+========================= */
+.quote-box {
+  position: relative;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2.2rem 2.4rem;
+  max-width: 460px;     /* ⬅️ más pequeña */
+  border-radius: 1rem;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+  text-align: left;
+}
+
+/* =========================
+   TÍTULO
+========================= */
+.quote-title {
+  font-size: 1.7rem;   /* ⬅️ título más compacto */
+  font-weight: 800;
+  line-height: 1.35;
+  color: #111827;
+  margin-bottom: 1rem;
+}
+
+/* Palabras destacadas */
+.quote-title .highlight {
+  color: #f97316;
+  font-weight: 800;
+}
+
+/* =========================
+   LÍNEA NARANJA
+========================= */
+.quote-divider {
+  width: 60px;
+  height: 4px;
+  background: #f97316;
+  margin: 0.8rem 0 1.2rem;
+  border-radius: 2px;
+}
+
+/* =========================
+   TEXTO
+========================= */
+.quote-text {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #374151;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 900px) {
+  .quote-overlay {
+    justify-content: center;
+    padding: 0 1.5rem;
+  }
+
+  .quote-box {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .quote-title {
+    font-size: 1.4rem;
+  }
+
+  .quote-text {
+    font-size: 0.9rem;
+  }
+}

@@ -1,8 +1,28 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import "./VisitUs.css";
+import visitImage from "../../assets/visit-image.jpg";
 
 export default function Visitanos() {
-  useEffect(() => { window.scrollTo(0, 0); }, []);
+  const splitRef = useRef(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+
+    const el = splitRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.classList.add("is-visible");
+        }
+      },
+      { threshold: 0.25 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const q = encodeURIComponent("Complejo Cultural Real Alto");
   const embed = `https://www.google.com/maps?q=${q}&output=embed`;
@@ -11,51 +31,85 @@ export default function Visitanos() {
 
   return (
     <main className="page-visit">
-      {/* HERO compacto */}
+
+      {/* HERO */}
       <header className="visit-hero">
-        <div className="hero-inner">
-          <span className="chip">Camina la historia • Siente el origen</span>
-          <h1>Visítanos</h1>
-          <p className="hero-sub">
-            En el Complejo Cultural Real Alto la historia no se mira desde lejos: se camina.
-            Recorre el museo con guías locales y descubre cómo el pasado sigue latiendo en cada rincón.
-          </p>
-        </div>
+<div className="hero-inner">
+  <div className="hero-glass">
+    {/* <span className="chip hero-chip">Planifica tu visita</span> */}
+
+    <h1>V I S Í T A N O S</h1>
+
+    <p className="hero-sub">
+      En el Complejo Cultural Real Alto la historia no se observa desde lejos:
+      se camina, se escucha y se comparte con la comunidad.
+    </p>
+  </div>
+</div>
+
       </header>
 
-      {/* INFO + MAPA */}
-      <section className="visit-info">
-        <div className="container">
-          <div className="visit-grid">
-            <div className="card">
-              <h2>Qué encontrarás</h2>
-              <ul className="list">
-                <li>Guías locales que cuentan la historia con cercanía y rigor.</li>
-                <li>Áreas del complejo pensadas para explorar y aprender.</li>
-                <li>Relatos arqueológicos que conectan pasado y presente.</li>
-              </ul>
-              <p className="note">*Consulta en nuestros canales oficiales la programación y horarios.</p>
-            </div>
+      {/* SPLIT TEXTO + IMAGEN */}
+      <section className="visit-split fade-up" ref={splitRef}>
+        <div className="visit-left">
+          <div className="visit-left-inner">
 
-            <div className="card">
-              <h2>Ubicación</h2>
-              <div className="map-wrap">
-                <iframe
-                  title="Mapa: Complejo Cultural Real Alto"
-                  src={embed}
-                  loading="lazy"
-                  allowFullScreen
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              </div>
-              <div className="map-actions">
-                <a className="btn solid sm" href={open} target="_blank" rel="noreferrer">Abrir en Maps</a>
-                <a className="btn outline sm" href={dir}  target="_blank" rel="noreferrer">Cómo llegar</a>
-              </div>
-            </div>
+            <h2 className="visit-eyebrow">Complejo Cultural Real Alto</h2>
+
+
+            <p>
+              Ubicado en la Península de Santa Elena, este espacio arqueológico y
+              cultural integra museo, comunidad y paisaje para ofrecer una
+              experiencia única en el Ecuador.
+            </p>
+
+            <ul className="visit-list">
+              <li>🗺️ Sitio arqueológico emblemático</li>
+              <li>🏛️ Museo comunitario</li>
+              <li>🌱 Espacios educativos y naturales</li>
+            </ul>
+
+          </div>
+        </div>
+
+        <div className="visit-right">
+          <img src={visitImage} alt="Complejo Cultural Real Alto" />
+        </div>
+      </section>
+
+      {/* MAPA */}
+      <section className="visit-map">
+        <div className="map-card">
+          <iframe
+            title="Mapa Complejo Cultural Real Alto"
+            src={embed}
+            loading="lazy"
+            allowFullScreen
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+
+          <div className="map-actions">
+            <a
+              href={open}
+              target="_blank"
+              rel="noreferrer"
+              className="map-btn solid"
+            >
+              📍 Abrir en Google Maps
+            </a>
+
+            <a
+              href={dir}
+              target="_blank"
+              rel="noreferrer"
+              className="map-btn outline"
+            >
+              🧭 Cómo llegar
+            </a>
           </div>
         </div>
       </section>
+
     </main>
   );
 }
