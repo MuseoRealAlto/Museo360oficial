@@ -2,8 +2,16 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
-import './Home.css';
+//import './Home.css';
+import './Hero.css';
+import './Gallery-Slide.css';
 import heroImage from '../../assets/museo2.jpg';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/pagination";
+
 const pub = (p) =>
   new URL(
     String(p).replace(/^\/+/, ""),
@@ -40,23 +48,34 @@ function Home() {
   return (
     <div className="home">
       {/* Hero Section */}
-      console.log(import.meta.env.BASE_URL);
+<section className="hero">
+  <div className="hero-content">
+    <span className="hero-subtitle">
+      INMERSIÓN EN LA SOCIEDAD VALDIVIA
+    </span>
 
-      <section className="hero">
-        <div className="hero-background">
-          <img src={heroImage} alt="Vista principal del museo" />
-          <div className="hero-overlay"></div>
-        </div>
-        <div className="hero-content">
-          <p className="hero-subtitle">INMERSIONATE EN LA SOCIEDAD VALDIVIA</p>
-          <h1 className="hero-title">La más antigua Revolución Neolítica de América</h1>
-          <p className="hero-description">
-            Museo Real Alto 360 es una experiencia inmersiva que permite a los visitantes explorar la riqueza histórica y 
-            arqueológica del Complejo Cultural Real Alto desde cualquier parte del mundo.
-          </p>
-          <Link to="/museum360" className="hero-button">¡Comenzar Tour!</Link>
-        </div>
-      </section>
+    <h1 className="hero-title">
+      La más antigua <br />
+      Revolución Neolítica <br/>
+      de América<br />
+    </h1>
+
+    <p className="hero-description">
+      Museo Real Alto 360 es una experiencia inmersiva que permite a los
+      visitantes explorar la riqueza histórica y arqueológica del
+      Complejo Cultural Real Alto desde cualquier parte del mundo.
+    </p>
+
+    {/* <Link to="/visitus" className="hero-button">
+      VISÍTANOS
+    </Link> */}
+
+      <Link to="/visitus" className="hero-button">
+        VISÍTANOS
+      </Link>
+
+  </div>
+</section>
 
       {/* Info Section */}
       <section className="info-section">
@@ -98,30 +117,62 @@ function Home() {
         </section>
       )}
 
-      {/* Gallery Section */}
-      <section className="gallery-section">
-        <div className="container">
-          <h2 className="section-title">Galería de Exhibiciones</h2>
-          <p className="section-description">
-            Explora nuestra colección de artefactos arqueológicos y espacios del complejo cultural Real Alto. 
-            Cada imagen te transportará a la vida cotidiana de la cultura Valdivia.
-          </p>
-          <div className="gallery-grid">
-            {slides.map((slide, i) => (
-              <div key={i} className="gallery-item" onClick={() => setIndex(i)}>
-                <img src={slide.src} alt={`Galería ${i + 1}`} />
-              </div>
-            ))}
-          </div>
+ {/* Gallery Section */}
+<section className="gallery-section">
+  <div className="gallery-overlay">
+    <div className="container">
 
-          <Lightbox
-            open={index >= 0}
-            index={index}
-            close={() => setIndex(-1)}
-            slides={slides}
-          />
-        </div>
-      </section>
+      {/* TEXTO */}
+<div className="gallery-header">
+  {/* <span className="gallery-eyebrow">EXPLORACIÓN VISUAL</span> */}
+  <h2 className="gallery-title">Galería de Exhibiciones</h2>
+  <div className="gallery-divider"></div>
+  <p className="gallery-description">
+    Cada imagen representa un vestigio de la vida cotidiana de la cultura
+    Valdivia. Recorre visualmente los espacios y hallazgos del
+    Complejo Cultural Real Alto.
+  </p>
+</div>
+
+
+      {/* CARRUSEL */}
+      <Swiper
+        modules={[Pagination]}
+        spaceBetween={40}
+        slidesPerView={3}
+        centeredSlides
+        loop
+        pagination={{ clickable: true }}
+        breakpoints={{
+          1280: { slidesPerView: 3 },
+          768: { slidesPerView: 2 },
+          0: { slidesPerView: 1 },
+        }}
+        className="centered-slide-carousel"
+      >
+        {slides.map((slide, i) => (
+          <SwiperSlide key={i}>
+            <div
+              className="gallery-slide"
+              onClick={() => setIndex(i)}
+            >
+              <img src={slide.src} alt={`Galería ${i + 1}`} />
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      <Lightbox
+        open={index >= 0}
+        index={index}
+        close={() => setIndex(-1)}
+        slides={slides}
+      />
+    </div>
+  </div>
+</section>
+
+
 
       {/* Quote Section */}
       <section className="quote-section">

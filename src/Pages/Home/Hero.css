@@ -1,0 +1,113 @@
+.hero {
+  min-height: 100vh;
+  height: 100vh;
+  width: 100vw;
+
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(0, 0, 0, 0.75) 35%,
+      rgba(0, 0, 0, 0.45) 60%,
+      rgba(0, 0, 0, 0.15) 80%,
+      rgba(0, 0, 0, 0.0) 100%
+    ),
+    url("../../assets/museo2.jpg");
+
+  background-size: cover;              /* 🔑 llena siempre */
+  background-position: 55% center;     /* 🔑 reduce sensación de zoom */
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+
+  padding-left: 8rem;
+  padding-right: 3rem;
+  box-sizing: border-box;
+}
+
+/* CONTENIDO */
+.hero-content {
+  max-width: 600px;
+  padding: 0 2rem;
+  text-align: left;
+}
+
+/* SUBTÍTULO */
+.hero-subtitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #fb923c;
+  margin-bottom: 1.4rem;
+
+  display: inline-block;
+  position: relative;
+}
+
+.hero-subtitle::after {
+  content: "";
+  display: block;
+  width: 200px;
+  height: 2px;
+  background-color: #fb923c;
+  margin-top: 0.6rem;
+}
+
+/* TÍTULO */
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+
+/* DESCRIPCIÓN */
+.hero-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #ffffff;
+  max-width: 520px;
+  margin-bottom: 2rem;
+}
+
+/* BOTÓN */
+.hero-button {
+  display: inline-block;
+  margin-top: 3.5rem;
+
+  padding: 1rem 2.5rem;
+  background: #f97316;
+  color: #ffffff;
+
+  border-radius: 30px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 1px;
+
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.hero-button:hover {
+  background: #ea580c;
+  transform: translateY(-2px);
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .hero {
+    padding: 4rem 2rem;
+    background-position: center;
+  }
+
+  .hero-title {
+    font-size: 2.3rem;
+  }
+
+  .hero-description {
+    margin-bottom: 3rem;
+  }
+}
