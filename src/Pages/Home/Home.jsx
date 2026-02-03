@@ -2,8 +2,18 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
-import './Home.css';
+//import './Home.css';
+import './Hero.css';
+import './Gallery-Slide.css';
+import './Quote.css';
+import './Services.css';
 import heroImage from '../../assets/museo2.jpg';
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination, Autoplay } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/pagination";
+
 const pub = (p) =>
   new URL(
     String(p).replace(/^\/+/, ""),
@@ -40,51 +50,196 @@ function Home() {
   return (
     <div className="home">
       {/* Hero Section */}
-      console.log(import.meta.env.BASE_URL);
+<section className="hero">
+  <div className="hero-content">
+    <span className="hero-subtitle">
+      INMERSIÓN EN LA SOCIEDAD VALDIVIA
+    </span>
 
-      <section className="hero">
-        <div className="hero-background">
-          <img src={heroImage} alt="Vista principal del museo" />
-          <div className="hero-overlay"></div>
-        </div>
-        <div className="hero-content">
-          <p className="hero-subtitle">INMERSIONATE EN LA SOCIEDAD VALDIVIA</p>
-          <h1 className="hero-title">La más antigua Revolución Neolítica de América</h1>
-          <p className="hero-description">
-            Museo Real Alto 360 es una experiencia inmersiva que permite a los visitantes explorar la riqueza histórica y 
-            arqueológica del Complejo Cultural Real Alto desde cualquier parte del mundo.
-          </p>
-          <Link to="/museum360" className="hero-button">¡Comenzar Tour!</Link>
-        </div>
-      </section>
+    <h1 className="hero-title">
+      La más antigua <br />
+      Revolución Neolítica <br/>
+      de América<br />
+    </h1>
+
+    <p className="hero-description">
+      Museo Real Alto 360 es una experiencia inmersiva que permite a los
+      visitantes explorar la riqueza histórica y arqueológica del
+      Complejo Cultural Real Alto desde cualquier parte del mundo.
+    </p>
+
+    {/* <Link to="/visitus" className="hero-button">
+      VISÍTANOS
+    </Link> */}
+
+      <Link to="/visitus" className="hero-button">
+        VISÍTANOS
+      </Link>
+
+  </div>
+</section>
+
+
+<section className="quote-section">
+  <div className="quote-overlay">
+    <div className="quote-box">
+      <h2 className="quote-title">
+        La <span className="highlight">arqueología</span> nos conecta con nuestro pasado,<br />
+        la <span className="highlight">tecnología</span> nos acerca al conocimiento,<br />
+        y la <span className="highlight">cultura</span> nos define como sociedad
+      </h2>
+
+      <div className="quote-divider"></div>
+
+      <p className="quote-text">
+        El Museo Real Alto 360 preserva el patrimonio cultural ecuatoriano
+        mediante tecnología inmersiva, ofreciendo una nueva forma de comprender
+        y valorar el legado ancestral de la cultura Valdivia.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+
+
+ {/* Gallery Section */}
+<section className="gallery-section">
+  <div className="gallery-overlay">
+    <div className="container">
+
+      {/* TEXTO */}
+<div className="gallery-header">
+  {/* <span className="gallery-eyebrow">EXPLORACIÓN VISUAL</span> */}
+  <h2 className="gallery-title">Galería de Exhibiciones</h2>
+  <div className="gallery-divider"></div>
+  <p className="gallery-description">
+    Cada imagen representa un vestigio de la vida cotidiana de la cultura
+    Valdivia. Recorre visualmente los espacios y hallazgos del
+    Complejo Cultural Real Alto.
+  </p>
+</div>
+
+
+      {/* CARRUSEL */}
+      <Swiper
+        modules={[Pagination]}
+        spaceBetween={40}
+        slidesPerView={3}
+        centeredSlides
+        loop
+        pagination={{ clickable: true }}
+        breakpoints={{
+          1280: { slidesPerView: 3 },
+          768: { slidesPerView: 2 },
+          0: { slidesPerView: 1 },
+        }}
+        className="centered-slide-carousel"
+      >
+        {slides.map((slide, i) => (
+          <SwiperSlide key={i}>
+            <div
+              className="gallery-slide"
+              onClick={() => setIndex(i)}
+            >
+              <img src={slide.src} alt={`Galería ${i + 1}`} />
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      <Lightbox
+        open={index >= 0}
+        index={index}
+        close={() => setIndex(-1)}
+        slides={slides}
+      />
+    </div>
+  </div>
+</section>
+
 
       {/* Info Section */}
-      <section className="info-section">
-        <div className="container">
-          <div className="info-grid">
-            <div className="info-card">
-              <div className="info-icon">🕐</div>
-              <h3>Horarios de Visita</h3>
-              <p>Lunes a Viernes: 9:00am - 5:00pm<br/>Sabados: 10:00am - 4:00pm<br/>Domingos: Cerrado</p>
-            </div>
-            <div className="info-card">
-              <div className="info-icon info-icon-img">
-                <img src={realaltoIcon} alt="Icono Cultura" />
-              </div>
-              <h3>Museo Real Alto</h3>
-              <p>Museo desarrollado con la colaboración de la comunidad circundante, a partir de una excavación científica pionera.</p>
-              <button className="info-button" onClick={() => setShowMoreInfo(!showMoreInfo)}>
-                {showMoreInfo ? 'Ver menos' : 'Ver más'}
-              </button>
-            </div>
-          </div>
+{/* Info Section */}
+<section className="info-section">
+  <div className="container">
+    <div className="info-grid">
+
+      {/* CARD 1 */}
+      <div className="info-card">
+        <span className="info-badge">Información</span>
+
+        <div className="info-header">
+          <span className="info-icon">🕐</span>
+          <h3>Horarios de Visita</h3>
         </div>
-      </section>
+
+        <p className="info-description">
+          Lunes a Viernes: 9:00am – 5:00pm<br />
+          Sábados: 10:00am – 4:00pm<br />
+          Domingos: Cerrado
+        </p>
+
+        <div className="info-divider"></div>
+
+        <p className="info-hint">
+          Planifica tu visita y disfruta del recorrido cultural.
+        </p>
+
+        <div className="info-line"></div>
+      </div>
+
+      {/* CARD 2 */}
+      <div className="info-card">
+        <span className="info-badge">Patrimonio</span>
+
+        <div className="info-header">
+          <span className="info-icon info-icon-img">
+            <img src={realaltoIcon} alt="Museo Real Alto" />
+          </span>
+          <h3>Museo Real Alto</h3>
+        </div>
+
+        <p className="info-description">
+          Museo desarrollado con la colaboración activa de la comunidad
+          circundante.
+        </p>
+
+        <div className="info-divider"></div>
+
+        <p className="info-hint">
+          Descubre su historia, investigaciones y legado cultural.
+        </p>
+
+        <button
+          className="info-button"
+          onClick={() => setShowMoreInfo(true)}
+        >
+          Explorar historia →
+        </button>
+
+        <div className="info-line"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
 
       {/* More Info Section (Conditional) */}
-      {showMoreInfo && (
-        <section className="more-info-section">
-          <div className="container">
+{showMoreInfo && (
+  <div
+    className="modal-overlay"
+    onClick={() => setShowMoreInfo(false)}
+  >
+    <div
+      className="modal-content"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <h3>Museo y Complejo Cultural Real Alto</h3>
+
+      <div className="modal-text">
             <p>
               El sitio arqueológico Real Alto, fue descubierto y excavado en los años 1970 por el Dr. Jorge Marcos, junto a un equipo de la Universidad de Illinois, y es uno de los más importantes a nivel nacional e internacional. Las investigaciones interdisciplinares que se han llevado a cabo desde su descubrimiento, demuestran que la cultura Valdivia fue una de las primeras en desarrollar la agricultura en todo el continente americano. En el sitio Real Alto se han aplicado metodologías pioneras, que han aportado mucha información sobre los modos de vida de la cultura Valdivia. En el caso de la arquebotánica, los estudios desarrollados por la Dra. D. Pearsall permitieron demostrar la domesticación de las plantas en este periodo. Los estudios etnoarqueológicos que realizó el Dr. J. Zeidler, permitieron identificar similitudes entre la construcción de las viviendas Valdivia, y las de la etnia Shuar. Fechamientos por termoluminiscencia realizados en los años 1990 confirman a la cerámica de Valdivia como la más antigua del continente americano. Estos resultados, producto de investigaciones que han involucrado a académicos de instituciones internacionales, permiten no solo reconstruir la forma de vida de un pueblo ancestral, sino también hacer partícipe de los descubrimientos a las comunidades y así fomentar la recuperación de la identidad cultural de los pueblos. Sin embargo, esta información no es accesible a la sociedad sin la ayuda de un mediador, que transforme los datos científicos en información comprensible, de ahí la necesidad de incentivar la divulgación científica.
             </p>
@@ -94,54 +249,18 @@ function Home() {
             <p>
               Desde que se creó el CCRA en la década de los 80 del siglo pasado, las investigaciones arqueológicas han continuado: han continuado las excavaciones, los estudios de los materiales, se han aplicado nuevas técnicas de datación, por termoluminiscencia o difractor de rayos X, producto de una colaboración entre la ESPOL, Universidad Autónoma de Barcelona, y la Universidad de Milán (Italia). Esta colaboración entre instituciones confirmó, a la cerámica Valdivia de RA como la más antigua del continente americano. Pero los avances en los trabajos no se quedaron ahí, se han realizado también prospecciones con georadar, estudios microscópicos de materiales líticos, y otras dataciones radiocarbónicos, en colaboración con la Universidad Federal del Extremo Oriente de Vladivostok, en la Federación Rusa, involucrando investigadores del Ecuador, Rusia, España y Japón,
             </p>
-          </div>
-        </section>
-      )}
+      </div>
 
-      {/* Gallery Section */}
-      <section className="gallery-section">
-        <div className="container">
-          <h2 className="section-title">Galería de Exhibiciones</h2>
-          <p className="section-description">
-            Explora nuestra colección de artefactos arqueológicos y espacios del complejo cultural Real Alto. 
-            Cada imagen te transportará a la vida cotidiana de la cultura Valdivia.
-          </p>
-          <div className="gallery-grid">
-            {slides.map((slide, i) => (
-              <div key={i} className="gallery-item" onClick={() => setIndex(i)}>
-                <img src={slide.src} alt={`Galería ${i + 1}`} />
-              </div>
-            ))}
-          </div>
-
-          <Lightbox
-            open={index >= 0}
-            index={index}
-            close={() => setIndex(-1)}
-            slides={slides}
-          />
-        </div>
-      </section>
-
-      {/* Quote Section */}
-      <section className="quote-section">
-        <div className="container">
-          <div className="quote-content">
-            <h2>
-              La <span className="highlight">arqueología</span> nos conecta con nuestro pasado, 
-              la <span className="highlight">tecnología</span> nos acerca al conocimiento, 
-              y la <span className="highlight">cultura</span> nos define como sociedad
-            </h2>
-            <p>
-              El Museo Real Alto 360 representa un hito en la preservación del patrimonio cultural ecuatoriano. 
-              A través de la tecnología inmersiva, ofrecemos una ventana única hacia la civilización Valdivia, 
-              permitiendo que las futuras generaciones comprendan y valoren nuestro rico legado ancestral 
-              desde una perspectiva completamente nueva e interactiva.
-            </p>
-          </div>
-        </div>
-      </section>
+      <button onClick={() => setShowMoreInfo(false)}>
+        Cerrar
+      </button>
     </div>
+  </div>
+)}
+
+
+
+</div>
   );
 }
 
