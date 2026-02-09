@@ -96,6 +96,44 @@ function Home() {
 
       modalTitle: "Museo y Complejo Cultural Real Alto",
       close: "Cerrar",
+
+      modalContent: (
+        <>
+          <p>
+            El sitio arqueológico Real Alto fue descubierto y excavado en la década de 1970
+            por el Dr. Jorge Marcos junto a un equipo de la Universidad de Illinois, y es uno
+            de los más importantes a nivel nacional e internacional. Las investigaciones
+            interdisciplinarias realizadas desde su descubrimiento demuestran que la cultura
+            Valdivia fue una de las primeras en desarrollar la agricultura en todo el
+            continente americano.
+          </p>
+
+          <p>
+            En el sitio Real Alto se aplicaron metodologías pioneras que aportaron información
+            clave sobre los modos de vida de la cultura Valdivia. Los estudios de arqueobotánica
+            dirigidos por la Dra. D. Pearsall demostraron la domesticación temprana de plantas,
+            mientras que los estudios etnoarqueológicos del Dr. J. Zeidler identificaron
+            similitudes entre las viviendas Valdivia y las de la etnia Shuar.
+          </p>
+
+          <p>
+            Fechamientos por termoluminiscencia realizados en los años 1990 confirmaron que la
+            cerámica Valdivia es la más antigua del continente americano. Estos resultados,
+            producto de colaboraciones internacionales, permiten reconstruir la vida de un
+            pueblo ancestral y fomentar la recuperación de la identidad cultural mediante la
+            divulgación científica.
+          </p>
+
+          <p>
+            El Complejo Cultural Real Alto (CCRA) fue concebido como un modelo de integración
+            entre la investigación científica y la comunidad. Está conformado por un museo,
+            viviendas tradicionales, auditorio, arboreto, huerto medicinal, itinerarios por
+            el sitio arqueológico y espacios dedicados a la investigación, integrando activamente
+            a los comuneros de Pechiche y a investigadores nacionales e internacionales.
+          </p>
+        </>
+      ),
+
     },
 
     EN: {
@@ -140,6 +178,40 @@ function Home() {
 
       modalTitle: "Real Alto Museum and Cultural Complex",
       close: "Close",
+      modalContent: (
+      <>
+        <p>
+          The Real Alto archaeological site was discovered and excavated in the 1970s by
+          Dr. Jorge Marcos together with a research team from the University of Illinois.
+          It is considered one of the most important archaeological sites at both national
+          and international levels. Interdisciplinary research has shown that the Valdivia
+          culture was among the first to develop agriculture in the Americas.
+        </p>
+
+        <p>
+          Pioneering methodologies applied at the Real Alto site provided key insights into
+          the lifestyle of the Valdivia culture. Archaeobotanical studies led by Dr. D.
+          Pearsall demonstrated early plant domestication, while ethnoarchaeological studies
+          by Dr. J. Zeidler revealed similarities between Valdivia houses and those of the
+          Shuar people.
+        </p>
+
+        <p>
+          Thermoluminescence dating carried out in the 1990s confirmed Valdivia ceramics as
+          the oldest on the American continent. These results, achieved through international
+          collaboration, allow the reconstruction of ancestral lifestyles and promote
+          cultural identity through scientific dissemination.
+        </p>
+
+        <p>
+          The Real Alto Cultural Complex (RACC) was conceived as a model integrating
+          scientific research with the surrounding community. It includes a museum,
+          traditional housing, an auditorium, an arboretum, a medicinal garden, archaeological
+          trails, and research facilities, actively involving the local Pechiche community
+          and international researchers.
+        </p>
+      </>
+    ),
     },
   };
 
@@ -263,10 +335,17 @@ function Home() {
       {showMoreInfo && (
         <div className="modal-overlay" onClick={() => setShowMoreInfo(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h3>{TEXT[lang].modalTitle}</h3>
+
+            <h3 className="modal-title">{TEXT[lang].modalTitle}</h3>
+
+            <div className="modal-body">
+              {TEXT[lang].modalContent}
+            </div>
+
             <button onClick={() => setShowMoreInfo(false)}>
               {TEXT[lang].close}
             </button>
+
           </div>
         </div>
       )}
