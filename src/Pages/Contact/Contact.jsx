@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./Contact.css";
+import { useLanguage } from "../../context/LanguageContext";
 
 function Contact() {
+  const { lang } = useLanguage();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -13,7 +16,7 @@ function Contact() {
     window.scrollTo(0, 0);
   }, []);
 
-  // 🔑 MISMO MAPA QUE VisitUs
+  // Mapa
   const q = encodeURIComponent("Complejo Cultural Real Alto");
   const embed = `https://www.google.com/maps?q=${q}&output=embed`;
 
@@ -26,7 +29,7 @@ function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("¡Gracias por contactarnos! Te responderemos pronto.");
+    alert(TEXT[lang].alert);
     setFormData({
       name: "",
       email: "",
@@ -35,16 +38,78 @@ function Contact() {
     });
   };
 
+  const TEXT = {
+    ES: {
+      title: "CONTACTO",
+
+      hoursTitle: "Horarios de Atención",
+      hoursText: (
+        <>
+          Lunes - Viernes: 9:00am - 5:00pm<br />
+          Sábados: 10:00am - 4:00pm<br />
+          Domingos: Cerrado
+        </>
+      ),
+
+      locationTitle: "Ubicación",
+      locationText: (
+        <>
+          Complejo Cultural Real Alto<br />
+          Península de Santa Elena<br />
+          Ecuador
+        </>
+      ),
+
+      nameLabel: "Nombre Completo",
+      emailLabel: "Correo Electrónico",
+      subjectLabel: "Asunto",
+      messageLabel: "Mensaje",
+      button: "Enviar Mensaje",
+
+      alert: "¡Gracias por contactarnos! Te responderemos pronto."
+    },
+
+    EN: {
+      title: "CONTACT",
+
+      hoursTitle: "Opening Hours",
+      hoursText: (
+        <>
+          Monday - Friday: 9:00am - 5:00pm<br />
+          Saturdays: 10:00am - 4:00pm<br />
+          Sundays: Closed
+        </>
+      ),
+
+      locationTitle: "Location",
+      locationText: (
+        <>
+          Real Alto Cultural Complex<br />
+          Santa Elena Peninsula<br />
+          Ecuador
+        </>
+      ),
+
+      nameLabel: "Full Name",
+      emailLabel: "Email Address",
+      subjectLabel: "Subject",
+      messageLabel: "Message",
+      button: "Send Message",
+
+      alert: "Thank you for contacting us! We will get back to you soon."
+    }
+  };
+
   return (
     <section className="contact-page">
 
       {/* TÍTULO */}
       <header className="contact-title">
-        <h1>CONTACTO</h1>
+        <h1>{TEXT[lang].title}</h1>
         <span className="title-line"></span>
       </header>
 
-      {/* MAPA (más bajo, NO gigante) */}
+      {/* MAPA */}
       <div className="contact-map">
         <iframe
           title="Mapa Complejo Cultural Real Alto"
@@ -55,37 +120,29 @@ function Contact() {
         />
       </div>
 
-      {/* CARD FLOTANTE */}
+      {/* CARD */}
       <div className="contact-card">
 
-        {/* INFO SUPERIOR */}
+        {/* INFO */}
         <div className="contact-info-grid">
 
           <div className="info-block">
-            <h3>Horarios de Atención</h3>
-            <p>
-              Lunes - Viernes: 9:00am - 5:00pm<br />
-              Sábados: 10:00am - 4:00pm<br />
-              Domingos: Cerrado
-            </p>
+            <h3>{TEXT[lang].hoursTitle}</h3>
+            <p>{TEXT[lang].hoursText}</p>
           </div>
 
           <div className="info-block">
-            <h3>Ubicación</h3>
-            <p>
-              Complejo Cultural Real Alto<br />
-              Península de Santa Elena<br />
-              Ecuador
-            </p>
+            <h3>{TEXT[lang].locationTitle}</h3>
+            <p>{TEXT[lang].locationText}</p>
           </div>
 
         </div>
 
-        {/* 🔴 FORMULARIO ORIGINAL (SIN QUITAR NADA) */}
+        {/* FORMULARIO */}
         <form className="contact-form" onSubmit={handleSubmit}>
 
           <div className="form-group">
-            <label htmlFor="name">Nombre Completo</label>
+            <label htmlFor="name">{TEXT[lang].nameLabel}</label>
             <input
               type="text"
               id="name"
@@ -97,7 +154,7 @@ function Contact() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="email">Correo Electrónico</label>
+            <label htmlFor="email">{TEXT[lang].emailLabel}</label>
             <input
               type="email"
               id="email"
@@ -109,7 +166,7 @@ function Contact() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="subject">Asunto</label>
+            <label htmlFor="subject">{TEXT[lang].subjectLabel}</label>
             <input
               type="text"
               id="subject"
@@ -121,7 +178,7 @@ function Contact() {
           </div>
 
           <div className="form-group">
-            <label htmlFor="message">Mensaje</label>
+            <label htmlFor="message">{TEXT[lang].messageLabel}</label>
             <textarea
               id="message"
               name="message"
@@ -133,7 +190,7 @@ function Contact() {
           </div>
 
           <button type="submit" className="submit-button">
-            Enviar Mensaje
+            {TEXT[lang].button}
           </button>
         </form>
 
